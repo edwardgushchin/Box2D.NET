@@ -6,7 +6,7 @@ using System;
 
 namespace Box2D.NET
 {
-    // Context for a time step. Recreated each time step.
+    // Per-world context reset before each time step.
     public class B2StepContext // TODO: @ikpil, check struct or class
     {
         internal void Reset()
@@ -35,7 +35,10 @@ namespace Box2D.NET
             enableWarmStarting = false;
             atomicSyncBits = default;
             mainClaimed = default;
+            workerFailure = null;
         }
+
+        internal Exception workerFailure;
 
         // time step
         public float dt;
